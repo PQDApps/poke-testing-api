@@ -1,0 +1,26 @@
+{
+  "name": "poke-testing-api",
+  "version": "1.0.0",
+  "description": "An API to learn testing using Postman. Lets you select your favorite Pokemon and create a Pokemon team.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PQDApps/poke-testing-api.git"
+  },
+  "keywords": [
+    "pokemon",
+    "poke",
+    "testing",
+    "postman",
+    "REST"
+  ],
+  "author": "Pedro Quinonez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PQDApps/poke-testing-api/issues"
+  },
+  "homepage": "https://github.com/PQDApps/poke-testing-api#readme"
+}
