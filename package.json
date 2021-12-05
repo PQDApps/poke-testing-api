@@ -2,6 +2,7 @@
   "name": "poke-testing-api",
   "version": "1.0.0",
   "description": "An API to learn testing using Postman. Lets you select your favorite Pokemon and create a Pokemon team.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/PQDApps/poke-testing-api/issues"
   },
-  "homepage": "https://github.com/PQDApps/poke-testing-api#readme"
+  "homepage": "https://github.com/PQDApps/poke-testing-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pokedex-promise-v2": "^4.0.0"
+  }
 }
