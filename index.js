@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import PokeGet from './src/get/PokemonGet.js';
+import { sequelize } from './src/utils/db.js';
+import Users from './src/models/Users.js';
 
 const app = express();
 const apiRouter = express.Router();
@@ -20,6 +22,13 @@ app.use(function (req, res, next) {
   res.status(404).send("404 - Sorry can't find that!")
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+sequelize.authenticate().then(() => {
+  console.log('Connected to Postgres');
+
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  });
+  Users.sync();
+}).catch(error => {
+  console.log('Could not connect to Postgres: ' + error)
 });
