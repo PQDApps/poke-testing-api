@@ -10,6 +10,21 @@ const P = new Pokedex(options);
 import express, { response } from 'express';
 const PokeGet = express.Router();
 
+PokeGet.get('/pokemon', (req, res, next) => {
+  const interval = {
+    limit: req.query.limit,
+    offset: req.query.offset
+  }
+  P.getPokemonsList(interval).then(response => {
+    console.log(response);
+    res.pkResponse = response;
+    next();
+  }).catch(error => {
+    console.log(error);
+    res.status(500).send(error);
+  });
+}, replaceUrls)
+
 PokeGet.get('/pokemon/:id', (req, res, next) => {
   P.getPokemonByName(req.params.id).then(response => {
     console.log(response);
@@ -93,6 +108,16 @@ PokeGet.get('/move/:id', (req, res, next) => {
 
 PokeGet.get('/stat/:id', (req, res, next) => {
   P.getStatByName(req.params.id).then(response => {
+    res.pkResponse = response;
+    next();
+  }).catch(error => {
+    console.log(error);
+    res.status(500).send(error);
+  });
+}, replaceUrls);
+
+PokeGet.get('/characteristic/:id', (req, res, next) => {
+  P.getCharacteristicById(req.params.id).then(response => {
     res.pkResponse = response;
     next();
   }).catch(error => {
