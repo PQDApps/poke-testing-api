@@ -32,6 +32,10 @@ Authentication.post('/auth/register', (req, res, next) => {
     UsersController.createUser({ username, password: hashed, displayname, email, image })
       .then(user => res.status(201).send({ message: `User created: ${user.username}`}))
       .catch(error => {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+          return res.status(400).send({ message: 'Username already taken. Username must be unique'});
+        }
+
         next(error);
       });
   });
