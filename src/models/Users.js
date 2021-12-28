@@ -2,6 +2,7 @@ import pkg from 'sequelize';
 const { Sequelize, Model, DataTypes } = pkg;
 import { sequelize } from '../utils/db.js';
 import Hearts from './Hearts.js';
+import Teams from './Teams.js';
 
 class Users extends Model {};
 Users.init({
@@ -43,5 +44,6 @@ Users.init({
   modelName: 'users'
 });
 Users.hasMany(Hearts, { as: 'hearts', foreignKey: 'user_id' });
+Users.hasMany(Teams, { as: 'teams', foreignKey: 'user_id' });
 
 export default Users;
