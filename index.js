@@ -5,8 +5,10 @@ import PokeGet from './src/get/PokemonGet.js';
 import { sequelize } from './src/utils/db.js';
 import Users from './src/models/Users.js';
 import UsersController from './src/controllers/UsersController.js';
+import Hearts from './src/models/Hearts.js';
 import passport from 'passport';
 import AuthRouter from './src/auth/Authentication.js';
+import HeartsRouter from './src/routers/HeartsRouter.js';
 import LocalStrategy from './src/auth/strategies/local.js';
 
 const app = express();
@@ -67,6 +69,7 @@ app.all('*', (req, res, next) => {
 app.use('/', express.static('public'))
 apiRouter.use('/', PokeGet);
 apiRouter.use('/', AuthRouter);
+apiRouter.use('/', HeartsRouter);
 app.use('/api', apiRouter);
 
 // Handle 404's
@@ -80,6 +83,7 @@ sequelize.authenticate().then(() => {
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   });
+  Hearts.sync();
   Users.sync();
 }).catch(error => {
   console.log('Could not connect to Postgres: ' + error)
